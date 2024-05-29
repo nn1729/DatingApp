@@ -1,0 +1,9 @@
+<h1>
+<p>Avaiable app users: {{this.appUsers.length}}</p>
+</h1>
+
+<ul>
+    @for (user of this.appUsers; track $index) {
+        <li> {{user.id}}. {{user.name}} </li>
+    }
+</ul>
