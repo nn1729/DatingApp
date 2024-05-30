@@ -1,7 +1,6 @@
-using API.Data;
+using API.Extensions;
+using API.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -13,20 +12,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
-
-//Database
-builder.Services.AddDbContext<DatingDbContext>(options => {
-    options.UseSqlite(builder.Configuration.GetConnectionString("DatingDbConnection"));
-});
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("https://localhost:4200")
-                          .AllowAnyHeader()
-                          .AllowAnyMethod());
-});
-
+builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddIdentityTokenService(builder.Configuration);
 
 var app = builder.Build();
 
@@ -39,9 +26,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.UseCors("AllowSpecificOrigin");
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
