@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middleware;
 using API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,8 @@ if (app.Environment.IsDevelopment())
 //    app.UseSwagger();
   //  app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
