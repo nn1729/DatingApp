@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-m navbar-dark fixed-top- bg-dark">
+
+    <div class="container">
+        <a class="navbar-brand" href="#">Dating App</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a nav-link href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a nav-link href="#">Matches</a>
+                </li>
+                <li class="nav-item">
+                    <a nav-link href="#">Messages</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input name="UserName" [(ngModel)] = "model.userName" class="form-control me-2" type="text" placeholder="UserName">
+                <input name="Password" [(ngModel)] = "model.password" class="form-control me-2" type="text" placeholder="Password">
+                <button class="btn btn-outline-success" type="submit" (click)="login()">Login</button>
+            </form>
+        </div>
+    </div>
+</nav>
